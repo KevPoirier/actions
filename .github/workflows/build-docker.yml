@@ -13,11 +13,6 @@ jobs:
     Build-and-push: 
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - name: Download maven artifacts
-              uses: actions/download-artifact@v4
-              with:
-                name: maven-artifacts
             - name: docker login
               uses: docker/login-action@v3
               with:
