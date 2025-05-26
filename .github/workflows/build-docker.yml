@@ -1,14 +1,12 @@
 name: Build Docker Image
 on: 
     workflow_call:
-        inputs:
+        secrets:
             docker_user:
                 required: true
-                type: string
                 description: the username of the dockerhub account
             docker_password:
                 required: true
-                type: string
                 description: the password of the dockerhub account
 
 jobs:
