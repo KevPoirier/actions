@@ -23,7 +23,7 @@ jobs:
               run: echo "IMAGE_NAME=KevPoirier/$(echo ${{ github.event.repository.name }} | awk -F '/' '{print $NF}')" >> $GITHUB_OUTPUT
             - name: extract image tag
               id: image_tag
-              run: echo "IMAGE_TAG=$(echo ${{ github.ref }} | awk -F '/' '{ print $NF }')"
+              run: echo "IMAGE_TAG=$(echo ${{ github.ref }} | awk -F '/' '{ print $NF }')" >> $GITHUB_OUTPUT
             - name: verify files
               run: ls -a
             - name: Build and push the docker image 
