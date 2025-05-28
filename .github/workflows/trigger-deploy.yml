@@ -13,5 +13,5 @@ jobs:
           env:
             OVERLAY_NAME: ${{ steps.repo_name.outputs.OVERLAY_NAME }}  
           with:
-            url:  http://localhost:8080/api/v1/workflows/argo/submit
+            url:  http://localhost:8080/api/v1/workflows/argocd/submit
             data: '{"image": "${{ env.OVERLAY_NAME }}", "tag": "${{ github.sha }}" }'
