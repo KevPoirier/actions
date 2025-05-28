@@ -1,6 +1,11 @@
 name: Trigger argo worflow
 on:
     workflow_call:
+      inputs:
+        image_tag:
+          required: true
+          type: string
+
 jobs:
     Send-webhook:
         runs-on: ubuntu-latest
