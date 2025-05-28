@@ -1,0 +1,19 @@
+name: Trigger argo workflow
+description: Trigger the argo workflow webhook endpoint
+inputs:
+  url:
+    description: the url of the webhook
+    required: true
+  data:
+    description: optional data to send to the webhook
+    required: false
+    default: '{}'
+runs:
+  using: composite
+  steps:
+  - name: send the webhook
+    env:
+      data: ${{ toJSON(inputs.data) }}
+    shell: bash
+    run: |
+      curl -X POST -H "Content-Type: application/json" -d '${{ inputs.data }}' ${{ inputs.url }}

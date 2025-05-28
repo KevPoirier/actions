@@ -1,0 +1,17 @@
+name: Trigger argo worflow
+on:
+    workflow_call:
+jobs:
+    Send-webhook:
+        runs-on: ubuntu-latest
+        steps:
+        - name: Get repo name
+          run: echo "OVERLAY_NAME=synerglass/$(echo ${{ github.event.repository.name }} | awk -F '/' '{print $NF}')" >> $GITHUB_OUTPUT
+          id: repo_name
+        - name: send the webhook request
+          uses: KevPoirier/actions/trigger-argo@main
+          env:
+            OVERLAY_NAME: ${{ steps.repo_name.outputs.OVERLAY_NAME }}  
+          with:
+            url:  http://localhost:8080/api/v1/workflows/argo/submit
+            data: '{"image": "${{ env.OVERLAY_NAME }}", "tag": "${{ github.sha }}" }'
