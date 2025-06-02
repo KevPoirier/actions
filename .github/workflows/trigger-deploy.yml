@@ -32,6 +32,10 @@ jobs:
           cd gitops
           git status
 
+      - name: Debug token (temporaire)
+        run: | 
+          echo "Token present: ${{ secrets.GITOPS_PAT != '' }}"
+
       - name: Commit and push
         run: |
           cd gitops
