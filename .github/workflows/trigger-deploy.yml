@@ -17,16 +17,21 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           path: gitops
       
-      - name: Show deployment.yaml before sed
-        run: cat gitops/microservices/base/deployment.yaml
+      - name: Show kustomization.yaml before sed
+        run: cat gitops/microservices/overlays/poker/kustomization.yaml
       
       - name: Update image tag in kustomization.yaml
         run: |
-          FILE="gitops/microservices/base/kustomization.yaml"
+          FILE="gitops/microservices/overlays/poker/kustomization.yaml"
           sed -i "s|newTag: .*|newTag: ${{ inputs.image_tag }}|" $FILE
 
-      - name: Show deployment.yaml after sed
-        run: cat gitops/microservices/base/deployment.yaml
+      - name: Show kustomization.yaml after sed
+        run: cat gitops/microservices/overlays/poker/kustomization.yaml
+
+      - name: Show git status
+        run: |
+          cd gitops
+          git status
 
       - name: Commit and push
         run: |
