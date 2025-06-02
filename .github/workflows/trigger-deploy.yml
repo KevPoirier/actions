@@ -16,11 +16,17 @@ jobs:
           repository: KevPoirier/gitops
           token: ${{ secrets.GITHUB_TOKEN }}
           path: gitops
-
+      
+      - name: Show deployment.yaml before sed
+        run: cat gitops/microservices/base/deployment.yaml
+      
       - name: Update deployment.yaml with new tag
         run: |
           FILE="gitops/microservices/base/deployment.yaml"
           sed -i "s|image: synerkevin/exogithubactions:.*|image: synerkevin/exogithubactions:${{ inputs.image_tag }}|" $FILE
+
+      - name: Show deployment.yaml after sed
+        run: cat gitops/microservices/base/deployment.yaml
 
       - name: Commit and push
         run: |
