@@ -13,10 +13,8 @@ jobs:
       - name: Checkout gitops repo
         uses: actions/checkout@v4
         with:
-          repository: KevPoirier/gitops
-          token: ${{ secrets.GITOPS_PAT }}
+          repository: https://x-access-token:${{ secrets.GITOPS_PAT }}@github.com/KevPoirier/gitops.git
           path: gitops
-          ssh-key: ""
       
       - name: Show kustomization.yaml before sed
         run: cat gitops/microservices/overlays/poker/kustomization.yaml
