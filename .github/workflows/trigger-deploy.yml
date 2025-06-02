@@ -13,7 +13,7 @@ jobs:
       - name: Checkout gitops repo
         uses: actions/checkout@v4
         with:
-          repository: https://x-access-token:${{ secrets.GITOPS_PAT }}@github.com/KevPoirier/gitops.git
+          repository: KevPoirier/gitops
           path: gitops
       
       - name: Show kustomization.yaml before sed
