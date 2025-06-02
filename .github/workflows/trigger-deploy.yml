@@ -37,6 +37,7 @@ jobs:
           cd gitops
           git config user.name "KevPoirier"
           git config user.email "kevin.poirier@synerglass-soft.com"
+          git remote set-url origin https://x-access-token:${{ secrets.GITOPS_PAT }}@github.com/KevPoirier/gitops.git
           git add .
           git commit -m "Update image tag to ${{ inputs.image_tag }}"
           git push
