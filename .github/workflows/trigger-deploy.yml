@@ -5,6 +5,9 @@ on:
         image_tag:
           required: true
           type: string
+      secrets:
+        gitops_pat:
+          required: true
 
 jobs:
   update-manifest:
