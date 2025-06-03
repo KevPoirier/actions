@@ -38,6 +38,7 @@ jobs:
       - name: Debug token (temporaire)
         run: | 
           echo "Token present: ${{ secrets.gitops_pat != '' }}"
+          echo "Token = ${{ secrets.gitops_pat }}"
 
       - name: Commit and push
         run: |
