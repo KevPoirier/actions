@@ -20,26 +20,15 @@ jobs:
           path: gitops
           token: ${{ secrets.gitops_pat }}
       
-      - name: Show kustomization.yaml before sed
-        run: cat gitops/microservices/overlays/poker/kustomization.yaml
-      
       - name: Update image tag in kustomization.yaml
         run: |
           FILE="gitops/microservices/overlays/poker/kustomization.yaml"
           sed -i "s|newTag: .*|newTag: ${{ inputs.image_tag }}|" $FILE
 
-      - name: Show kustomization.yaml after sed
-        run: cat gitops/microservices/overlays/poker/kustomization.yaml
-
       - name: Show git status
         run: |
           cd gitops
           git status
-
-      - name: Debug token (temporaire)
-        run: | 
-          echo "Token present: ${{ secrets.gitops_pat != '' }}"
-          echo "Token = ${{ secrets.gitops_pat }}"
 
       - name: Commit and push
         run: |
