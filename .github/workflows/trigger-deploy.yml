@@ -45,7 +45,7 @@ jobs:
           cd gitops
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.gitops_pat }}@github.com/KevPoirier/gitops.git
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/KevPoirier/gitops.git
           git add .
           git commit -m "Update image tag to ${{ inputs.image_tag }}" || echo "No changes to commit"
           git remote -v  # debug: montre si l'URL avec token est bien utilisée
