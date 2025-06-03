@@ -15,9 +15,6 @@ jobs:
     steps:
       - name: Checkout gitops repo
         uses: actions/checkout@v4
-        with:
-          repository: KevPoirier/gitops
-          path: gitops
       
       - name: Show kustomization.yaml before sed
         run: cat gitops/microservices/overlays/poker/kustomization.yaml
