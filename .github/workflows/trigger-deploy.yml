@@ -37,14 +37,14 @@ jobs:
 
       - name: Debug token (temporaire)
         run: | 
-          echo "Token present: ${{ secrets.GITOPS_PAT != '' }}"
+          echo "Token present: ${{ secrets.gitops_pat != '' }}"
 
       - name: Commit and push
         run: |
           cd gitops
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.GITOPS_PAT }}@github.com/KevPoirier/gitops.git
+          git remote set-url origin https://x-access-token:${{ secrets.gitops_pat }}@github.com/KevPoirier/gitops.git
           git add .
           git commit -m "Update image tag to ${{ inputs.image_tag }}" || echo "No changes to commit"
           git remote -v  # debug: montre si l'URL avec token est bien utilisée
