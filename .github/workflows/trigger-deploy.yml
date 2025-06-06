@@ -25,7 +25,7 @@ jobs:
       
       - name: Update image tag in kustomization.yaml
         run: |
-          FILE="gitops/microservices/overlays/ ${{ inputs.service_name }}/kustomization.yaml"
+          FILE="gitops/microservices/overlays/${{ inputs.service_name }}/kustomization.yaml"
           sed -i "s|newTag: .*|newTag: ${{ inputs.image_tag }}|" $FILE
 
       - name: Show git status
